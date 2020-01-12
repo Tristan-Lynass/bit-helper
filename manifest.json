@@ -1,0 +1,20 @@
+{
+	"manifest_version": 2,
+	"name": "BitHelper",
+	"description": "Adds comment thread navigation buttons to the pull requests page.",
+	"version": "1.0",
+	"permissions": [
+		"tabs"
+	],
+	"content_scripts": [{
+		"matches": ["https://bitbucket.org/*"],
+		"css": ["styles.css"],
+		"js": ["payload.js"]
+	}],
+	"background": {
+		"scripts": ["background.js"]
+	},
+	"web_accessible_resources": [
+		"icon/*.svg"
+	]
+}
