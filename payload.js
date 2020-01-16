@@ -47,6 +47,7 @@ function prevComment() {
 	}
 	currDisp.innerHTML = ii + 1;
 	comments[ii].scrollIntoView();
+	totalDisp.innerHTML = ' / ' + comments.length;
 }
 
 function nextComment() {
@@ -57,6 +58,7 @@ function nextComment() {
 	}
 	currDisp.innerHTML = ii + 1;
 	comments[ii].scrollIntoView();
+	totalDisp.innerHTML = ' / ' + comments.length;
 }
 
 function toTop() {
@@ -77,6 +79,9 @@ function onLoaded() {
 }
 
 function constructor() {
+	outerContainer = document.createElement('div');
+	outerContainer.setAttribute('class', 'toolbar-container');
+	
 	container = document.createElement('div');
 	container.setAttribute('class', 'nav-container');
 
@@ -99,7 +104,13 @@ function constructor() {
 	downBtn.onclick = nextComment;
 	homeBtn.onclick = toTop;
 
-	document.body.appendChild(container);
+	const tb = document.getElementById('pr-toolbar');
+	if (!!tb) {
+		outerContainer.appendChild(tb);
+	}
+	
+	outerContainer.appendChild(container);
+	document.body.appendChild(outerContainer);
 
 	const timerId = setInterval(() => {
 		let x = document.getElementById('pullrequest-diff');
